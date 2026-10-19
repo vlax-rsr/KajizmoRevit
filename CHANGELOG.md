@@ -7,6 +7,27 @@ et le projet respecte le [versionnage sémantique](https://semver.org/lang/fr/).
 
 ## [Non publié]
 
+## [0.1.1] - 2026-10-19
+
+### Modifié
+
+- **Notation des files** : la numérotation commence désormais à `1` (`1`, `2`, `3`, …) ;
+  les positions des axes partent toujours de `0` sur le plan.
+- **Boutons + / −** du champ **Débordement** désormais fonctionnels (pas adapté à l'unité :
+  0,1 m / 1 cm / 10 mm).
+- Libellé du champ **Débordement** synchronisé avec l'unité sélectionnée.
+- Bouton renommé : **Créer Quadrillage** → **Réseau de quadrillage**.
+
+### Supprimé
+
+- Import inutilisé (`sys`) dans `script.py`.
+- Graphe Dynamo de référence `Quadrillage_input_list.dyn` (jamais exécuté par l'extension)
+  et la règle `*.dyn` devenue inutile dans `.gitattributes`.
+
+### Corrigé
+
+- Incohérence entre le libellé « 1, 2, 3… » de l'interface et la numérotation réelle.
+
 ## [0.1.0] - 2026-10-19
 
 ### Ajouté
