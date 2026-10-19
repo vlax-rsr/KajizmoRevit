@@ -9,6 +9,7 @@ Auteur : Riana
 
 __title__ = "Créer\nQuadrillage"
 __doc__ = """Génération de quadrillages Revit : réseau sur niveau actif, étendue Z tous niveaux, visible en 3D, couleur et débordement maîtrisés."""
+__version__ = "0.1.0"
 
 import os
 import sys
