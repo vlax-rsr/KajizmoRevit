@@ -1,5 +1,2 @@
-# Le fichier Dynamo utilise des fins de ligne particulieres (\r\r\n) : ne pas le normaliser
-*.dyn -text
-
 # Binaires
 *.png binary

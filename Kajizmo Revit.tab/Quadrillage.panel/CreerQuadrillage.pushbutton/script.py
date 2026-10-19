@@ -7,12 +7,11 @@ traversant tous les niveaux, visible en 3D sur ce niveau, et avec un débordemen
 Auteur : Riana
 """
 
-__title__ = "Créer\nQuadrillage"
+__title__ = "Réseau de\nquadrillage"
 __doc__ = """Génération de quadrillages Revit : réseau sur niveau actif, étendue Z tous niveaux, visible en 3D, couleur et débordement maîtrisés."""
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 import os
-import sys
 import re
 
 # Revit & pyRevit Imports
@@ -87,6 +86,9 @@ _RGB_COLOR_VALUES = {
 
 # Type de quadrillage proposé par défaut dans la liste.
 DEFAULT_GRID_TYPE_NAME = "Bulle 6.5mm"
+
+# Pas d'incrément du débordement selon l'unité (0: m, 1: mm, 2: cm)
+_OFFSET_STEPS = {0: 0.1, 1: 10.0, 2: 1.0}
 
 
 def _color_param_value(rgb):
@@ -270,31 +272,26 @@ def cumulative(values):
     return out
 
 
-def get_grid_name_sequence(start_name, count):
-    """Génère une suite de noms de quadrillages (ex: 1, 2, 3... ou A, B, C... AA)."""
-    start_name = (start_name or "").strip()
-    if not start_name:
-        start_name = "1"
+def get_grid_name_sequence(mode_index, count):
+    """Noms des quadrillages selon le mode de nomination choisi.
 
-    if start_name.isdigit():
-        start_num = int(start_name)
-        return [str(start_num + i) for i in range(count)]
-    elif len(start_name) == 1 and start_name.isalpha():
-        is_upper = start_name.isupper()
-        start_code = ord(start_name.upper()) - ord('A')
-        names = []
-        for i in range(count):
-            curr = start_code + i
-            name = ""
-            while True:
-                name = chr(ord('A') + (curr % 26)) + name
-                curr = curr // 26 - 1
-                if curr < 0:
-                    break
-            names.append(name if is_upper else name.lower())
-        return names
-    else:
-        return ["{}_{}".format(start_name, i + 1) for i in range(count)]
+    Mode 0 (numérique)    : 1, 2, 3, ... (les positions des axes, elles, partent de 0)
+    Mode 1 (alphabétique) : A, B, C, ... Z, AA, ...
+    """
+    if mode_index != 1:
+        return [str(i + 1) for i in range(count)]
+
+    names = []
+    for i in range(count):
+        curr = i
+        name = ""
+        while True:
+            name = chr(ord('A') + (curr % 26)) + name
+            curr = curr // 26 - 1
+            if curr < 0:
+                break
+        names.append(name)
+    return names
 
 
 # ---------------------------------------------------------------------------
@@ -309,7 +306,7 @@ class GridGeneratorWindow(forms.WPFWindow):
         self.current_level = get_current_level(self.doc)
         level_display = get_element_name(self.current_level) if self.current_level else "Niveau 0"
         self.lbl_level_badge.Text = level_display
-        self.lbl_header_subtitle.Text = "Réseau sur {} — Étendue tous niveaux & 3D".format(level_display)
+        self.lbl_header_subtitle.Text = "Étendue sur tous les niveaux"
 
         # Récupération et alimentation des GridTypes du modèle
         self.grid_types = []
@@ -324,6 +321,8 @@ class GridGeneratorWindow(forms.WPFWindow):
         # Événements boutons
         self.btn_create.Click += self.on_create
         self.btn_cancel.Click += self.on_cancel
+        self.btn_off_up.Click += self.on_offset_up
+        self.btn_off_down.Click += self.on_offset_down
 
         self.update_preview()
 
@@ -364,8 +363,27 @@ class GridGeneratorWindow(forms.WPFWindow):
     def on_input_changed(self, sender, args):
         self.update_preview()
 
+    def _nudge_offset(self, delta):
+        """Ajuste le champ Débordement d'un pas dépendant de l'unité choisie."""
+        try:
+            current = float(self.txt_offset.Text.replace(",", "."))
+        except:
+            current = 0.0
+        step = _OFFSET_STEPS.get(self.cb_unit.SelectedIndex, 0.1)
+        new_value = current + delta * step
+        if new_value < 0.0:
+            new_value = 0.0
+        self.txt_offset.Text = "{:.1f}".format(new_value)
+
+    def on_offset_up(self, sender, args):
+        self._nudge_offset(1)
+
+    def on_offset_down(self, sender, args):
+        self._nudge_offset(-1)
+
     def update_preview(self):
         unit_sym = self.get_unit_symbol()
+        self.lbl_offset.Text = "Débordement ({})".format(unit_sym)
         try:
             d_x = parse_distances(self.txt_dist_x.Text)
             d_y = parse_distances(self.txt_dist_y.Text)
@@ -431,8 +449,8 @@ class GridGeneratorWindow(forms.WPFWindow):
             current_level_id = self.current_level.Id if self.current_level else None
 
             # Noms des axes
-            names_x = get_grid_name_sequence(self.txt_start_x.Text, len(coords_x_ft))
-            names_y = get_grid_name_sequence(self.txt_start_y.Text, len(coords_y_ft))
+            names_x = get_grid_name_sequence(self.txt_start_x.SelectedIndex, len(coords_x_ft))
+            names_y = get_grid_name_sequence(self.txt_start_y.SelectedIndex, len(coords_y_ft))
 
             # Récupération du type de Grid sélectionné
             selected_grid_type = None

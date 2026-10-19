@@ -32,23 +32,34 @@ sont automatiquement acceptés. Le résultat est rapide, sans boîte de dialogue
 
 L'extension est **autonome** : elle ne dépend d'aucun script externe pour fonctionner.
 
+## Aperçu
+
+<div align="center">
+
+<img src="apercu.png" alt="Interface de l'extension Kajizmo Revit" width="860">
+
+</div>
+
 ## Fonctionnalités
 
 - **Saisie par espacements** : entrez les distances successives entre les files
-  verticales (X) et horizontales (Y) — séparateurs acceptés : `,` `;` espace et `[ ]`.
-- **Aperçu en temps réel** : les positions cumulées des axes et l'emprise totale
-  (par ex. `16,00 m × 18,00 m`) sont affichées pendant la saisie.
-- **Départ personnalisable** : numérotation des files verticales (à partir de `1`, `2`, …)
-  et lettrage des files horizontales (à partir de `A`, `B`, …).
+  verticales (X) et horizontales (Y). Valeurs séparées par une virgule (`,`), un
+  point-virgule (`;`) ou un espace.
+- **Aperçu en temps réel** : l'emprise totale et le nombre de files se mettent à jour
+  pendant la saisie (par ex. `Emprise : 16.00 m × 18.00 m (5 × 5 files)`) ; une saisie
+  invalide affiche un message et désactive la création.
+- **Notation au choix, par axe** : files numérotées (`1`, `2`, `3`, …) ou lettrées
+  (`A`, `B`, `C`, …). Par défaut : axes verticaux numérotés, axes horizontaux lettrés.
 - **Unités** : mètres (m), millimètres (mm) ou centimètres (cm).
 - **Type de quadrillage** : reprend les types présents dans le modèle, avec
   **Bulle 6.5mm** proposé par défaut.
 - **Couleur** : **Rouge** (texte et lignes rouges), **Noir** (valeur par défaut) ou
   **Conserver la couleur actuelle**. La couleur des lignes est appliquée au type de
   quadrillage ainsi qu'aux extrémités (bulles) du quadrillage.
-- **Débordement des extrémités** : marge réglable au-delà de la dernière intersection.
+- **Débordement des extrémités** : marge réglable au-delà des extrémités, au clavier ou
+  avec les boutons **+ / −** (pas adapté à l'unité choisie : 0,1 m / 1 cm / 10 mm).
 - **Création intelligente** : quadrillage généré sur le niveau actif, étendu
-  verticalement à tous les niveaux et visible en vue 3D.
+  verticalement sur **tous les niveaux** et affiché en vue 3D sur ce niveau uniquement.
 
 ## Prérequis
 
@@ -64,7 +75,7 @@ L'extension est **autonome** : elle ne dépend d'aucun script externe pour fonct
 ### Option 1 — Téléchargement de l'archive (recommandé)
 
 1. Téléchargez la dernière archive :
-   [**KajizmoRevit-0.1.0.rar**](https://github.com/vlax-rsr/KajizmoRevit/releases/latest/download/KajizmoRevit-0.1.0.rar)
+   [**KajizmoRevit-0.1.1.rar**](https://github.com/vlax-rsr/KajizmoRevit/releases/latest/download/KajizmoRevit-0.1.1.rar)
    (ou consultez la page [Versions](https://github.com/vlax-rsr/KajizmoRevit/releases/latest)).
 2. Décompressez l'archive (WinRAR, 7-Zip ou équivalent) : vous obtenez le dossier
    `KajizmoRevit.extension`.
@@ -99,16 +110,15 @@ Après toute installation ou mise à jour, rechargez pyRevit :
 
 ## Utilisation
 
-1. Ouvrez un projet Revit et placez-vous sur la vue du niveau souhaité
-   (le niveau de la vue active est utilisé). La barre de titre de la fenêtre
-   affiche le niveau détecté.
+1. Ouvrez un projet Revit et placez-vous sur la vue du niveau souhaité.
+   La barre de titre de la fenêtre affiche le niveau détecté.
 2. Dans le ruban, cliquez sur l'onglet **Kajizmo Revit** → panneau **Quadrillage**
-   → **Créer Quadrillage**.
+   → **Réseau de quadrillage**.
 3. Renseignez les **distances entre files** pour les axes verticaux (X) et
-   horizontaux (Y), puis ajustez au besoin le départ, l'unité, le type de
-   quadrillage, la couleur et le débordement.
+   horizontaux (Y), puis réglez au besoin la notation, l'unité, le type de
+   quadrillage, la couleur et le débordement (champ ou boutons + / −).
 4. Vérifiez l'aperçu de l'emprise, puis validez avec **Entrée** ou le bouton
-   **Créer les Quadrillages**.
+   **Créer les quadrillages**.
 
 ### Exemple
 
@@ -117,40 +127,25 @@ Après toute installation ou mise à jour, rechargez pyRevit :
 | X (vertical) | `3, 5, 4, 4` | 0 · 3 · 8 · 12 · 16 |
 | Y (horizontal) | `4, 5, 5, 4` | 0 · 4 · 9 · 14 · 18 |
 
-Dans cet exemple, l'emprise totale affichée est de **16,00 m × 18,00 m** (5 × 5 files).
+Dans cet exemple, l'emprise totale affichée est de **16.00 m × 18.00 m** (5 × 5 files).
 
 ## Structure du dépôt
 
 ```text
-KajizmoRevit/                            <-- dépôt (à renommer en KajizmoRevit.extension)
+KajizmoRevit/
 ├── LICENSE
 ├── CHANGELOG.md
 ├── README.md
-└── Kajizmo Revit.tab/                   <-- onglet dans le ruban Revit
-    └── Quadrillage.panel/               <-- panneau de l'onglet
-        └── CreerQuadrillage.pushbutton/ <-- bouton
-            ├── bundle.yaml              <-- métadonnées du bouton (titre, infobulle)
-            ├── icon.png                 <-- icône (thème clair)
-            ├── icon.dark.png            <-- icône (thème sombre)
-            ├── ui.xaml                  <-- interface graphique (WPF)
-            ├── script.py                <-- logique et API Revit
-            └── Quadrillage_input_list.dyn <-- graphe Dynamo de référence
+├── apercu.png
+└── Kajizmo Revit.tab/
+    └── Quadrillage.panel/
+        └── CreerQuadrillage.pushbutton/
+            ├── bundle.yaml
+            ├── icon.png
+            ├── icon.dark.png
+            ├── ui.xaml
+            └── script.py
 ```
-
-Le fichier `Quadrillage_input_list.dyn` est conservé à titre de référence
-(équivalent Dynamo du générateur) : il n'est pas exécuté par l'extension.
-
-## Versionnage
-
-Ce projet suit le [versionnage sémantique](https://semver.org/lang/fr/) :
-
-- **MAJOR** — modification incompatible ;
-- **MINOR** — nouvelle fonctionnalité rétrocompatible ;
-- **PATCH** — correction de bug.
-
-Chaque version est publiée sous forme de **tag** `vX.Y.Z` et accompagnée d'une
-archive `.rar` dans les [Versions](https://github.com/vlax-rsr/KajizmoRevit/releases)
-ainsi que d'une entrée dans le [journal des modifications](CHANGELOG.md).
 
 ## Contribution et assistance
 
