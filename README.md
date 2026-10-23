@@ -1,16 +1,16 @@
 <div align="center">
 
-# Kajizmo Revit
+# Kajizmo Revit - Quadrillage automatique
 
-**Extension pyRevit qui génère un réseau de quadrillages orthogonaux dans Autodesk Revit à partir d'une simple liste d'espacements.**
+**Extension pyRevit qui génère un réseau de quadrillages orthogonaux dans Autodesk Revit à partir d'une liste d'espacements.**
 
-[![Version](https://img.shields.io/github/v/release/vlax-rsr/KajizmoRevit?label=version&color=c0392b)](https://github.com/vlax-rsr/KajizmoRevit/releases/latest)
-[![Téléchargements](https://img.shields.io/github/downloads/vlax-rsr/KajizmoRevit/total?label=t%C3%A9l%C3%A9chargements)](https://github.com/vlax-rsr/KajizmoRevit/releases)
+[![Version](https://img.shields.io/github/v/release/vlax-rsr/KajizmoRevit-QuadrillageAuto?label=version&color=c0392b)](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases/latest)
+[![Téléchargements](https://img.shields.io/github/downloads/vlax-rsr/KajizmoRevit-QuadrillageAuto/total?label=t%C3%A9l%C3%A9chargements)](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases)
 [![Revit](https://img.shields.io/badge/Revit-2019%2B-186BFF)](#pr%C3%A9requis)
 [![pyRevit](https://img.shields.io/badge/pyRevit-4.8%2B-2E7D32)](#pr%C3%A9requis)
-[![Licence](https://img.shields.io/github/license/vlax-rsr/KajizmoRevit?label=licence)](LICENSE)
+[![Licence](https://img.shields.io/github/license/vlax-rsr/KajizmoRevit-QuadrillageAuto?label=licence)](LICENSE)
 
-[Télécharger](https://github.com/vlax-rsr/KajizmoRevit/releases/latest) ·
+[Télécharger](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases/latest) ·
 [Fonctionnalités](#fonctionnalités) ·
 [Installation](#installation) ·
 [Utilisation](#utilisation) ·
@@ -26,13 +26,12 @@
 qui ajoute un onglet dédié dans le ruban d'Autodesk Revit.
 
 Elle crée un réseau de quadrillages (grilles) orthogonaux à partir d'une liste
-d'espacements saisie par l'utilisateur, sans passer par Dynamo : le traitement est
-directement exécuté par l'API Revit, dans une seule transaction, et les avertissements
-sont automatiquement acceptés. Le résultat est rapide, sans boîte de dialogue bloquante.
+d'espacements saisie par l'utilisateur : le traitement est
+directement exécuté par l'API Revit. Le résultat est rapide.
 
 L'extension est **autonome** : elle ne dépend d'aucun script externe pour fonctionner.
 
-## Aperçu
+## Aperçu de l'interface
 
 <div align="center">
 
@@ -53,13 +52,13 @@ L'extension est **autonome** : elle ne dépend d'aucun script externe pour fonct
 - **Unités** : mètres (m), millimètres (mm) ou centimètres (cm).
 - **Type de quadrillage** : reprend les types présents dans le modèle, avec
   **Bulle 6.5mm** proposé par défaut.
-- **Couleur** : **Rouge** (texte et lignes rouges), **Noir** (valeur par défaut) ou
+- **Couleur** : **Rouge**, **Noir** ou
   **Conserver la couleur actuelle**. La couleur des lignes est appliquée au type de
   quadrillage ainsi qu'aux extrémités (bulles) du quadrillage.
 - **Débordement des extrémités** : marge réglable au-delà des extrémités, au clavier ou
-  avec les boutons **+ / −** (pas adapté à l'unité choisie : 0,1 m / 1 cm / 10 mm).
+  avec les boutons **+ / −** (pas de 0,1 m / 1 cm / 10 mm selon l'unité choisie).
 - **Création intelligente** : quadrillage généré sur le niveau actif, étendu
-  verticalement sur **tous les niveaux** et affiché en vue 3D sur ce niveau uniquement.
+  verticalement sur **tous les niveaux** et affiché en vue 3D.
 
 ## Prérequis
 
@@ -69,20 +68,24 @@ L'extension est **autonome** : elle ne dépend d'aucun script externe pour fonct
 | pyRevit | 4.8 ou version ultérieure (dernière version recommandée) |
 
 > Non testé sur l'ensemble des versions de Revit.
+>
+> pyRevit **7.0.0 ou ultérieur** est recommandé : les versions antérieures souffrent
+> d'un ralentissement connu à l'exécution des commandes pyRevit.
 
 ## Installation
 
 ### Option 1 — Téléchargement de l'archive (recommandé)
 
-1. Téléchargez la dernière archive :
-   [**KajizmoRevit-0.1.1.rar**](https://github.com/vlax-rsr/KajizmoRevit/releases/latest/download/KajizmoRevit-0.1.1.rar)
-   (ou consultez la page [Versions](https://github.com/vlax-rsr/KajizmoRevit/releases/latest)).
-2. Décompressez l'archive (WinRAR, 7-Zip ou équivalent) : vous obtenez le dossier
+1. Téléchargez et installez la dernière version de [pyRevit](https://github.com/pyrevitlabs/pyRevit/releases).
+2. Téléchargez la dernière archive :
+   [**KajizmoRevit-0.1.1.rar**](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases/latest/download/KajizmoRevit-0.1.1.rar)
+   (ou consultez la page [Versions](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases/latest)).
+3. Décompressez l'archive (WinRAR, 7-Zip ou équivalent) : vous obtenez le dossier
    `KajizmoRevit.extension`.
-3. Copiez ce dossier dans le répertoire des extensions pyRevit :
+4. Copiez ce dossier dans le répertoire des extensions pyRevit :
    - `%APPDATA%\pyRevit\Extensions`
    - soit en clair : `C:\Users\<votre-nom>\AppData\Roaming\pyRevit\Extensions`
-4. Dans Revit, ouvrez l'onglet **pyRevit** → **Reload** (ou menu **pyRevit** → **Reload**).
+5. Dans Revit, ouvrez l'onglet **pyRevit** → **Reload** (ou menu **pyRevit** → **Reload**).
 
 > Le nom du dossier **doit** se terminer par `.extension`, sinon pyRevit ne le
 > reconnaît pas.
@@ -91,7 +94,7 @@ L'extension est **autonome** : elle ne dépend d'aucun script externe pour fonct
 
 ```powershell
 cd "$env:APPDATA\pyRevit\Extensions"
-git clone https://github.com/vlax-rsr/KajizmoRevit.git KajizmoRevit.extension
+git clone https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto.git KajizmoRevit.extension
 ```
 
 Pour mettre à jour une installation existante :
@@ -111,7 +114,7 @@ Après toute installation ou mise à jour, rechargez pyRevit :
 ## Utilisation
 
 1. Ouvrez un projet Revit et placez-vous sur la vue du niveau souhaité.
-   La barre de titre de la fenêtre affiche le niveau détecté.
+   Une pastille dans la fenêtre indique le niveau détecté.
 2. Dans le ruban, cliquez sur l'onglet **Kajizmo Revit** → panneau **Quadrillage**
    → **Réseau de quadrillage**.
 3. Renseignez les **distances entre files** pour les axes verticaux (X) et
@@ -132,7 +135,9 @@ Dans cet exemple, l'emprise totale affichée est de **16.00 m × 18.00 m** (5 ×
 ## Structure du dépôt
 
 ```text
-KajizmoRevit/
+KajizmoRevit.extension/
+├── .gitattributes
+├── .gitignore
 ├── LICENSE
 ├── CHANGELOG.md
 ├── README.md
@@ -150,7 +155,7 @@ KajizmoRevit/
 ## Contribution et assistance
 
 - Pour signaler un bug ou proposer une amélioration, ouvrez une
-  [issue](https://github.com/vlax-rsr/KajizmoRevit/issues).
+  [issue](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/issues).
 
 ## Licence
 
