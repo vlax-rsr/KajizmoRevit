@@ -15,3 +15,24 @@ desktop.ini
 *.log
 *.bak
 *.tmp
+*.rar
+*.zip
+
+# ───────────────────────────────────────────────────────────────
+# Fichiers gardés EN LOCAL uniquement (jamais poussés sur GitHub)
+# Pour re-publier un élément : supprimer sa ligne ci-dessous, puis
+#   git add <chemin>   (et commit / push)
+# ───────────────────────────────────────────────────────────────
+
+# Panneau Laboratoire (plugin « Murs depuis CAO » en développement)
+Kajizmo Revit.tab/Laboratoire.panel/
+
+# Spécifications internes / instructions IA, et tests du Laboratoire
+docs/
+tests/
+
+# Modules transverses utilisés uniquement par le Laboratoire
+lib/
+
+# Scripts de déploiement personnels (usage local)
+.tools/

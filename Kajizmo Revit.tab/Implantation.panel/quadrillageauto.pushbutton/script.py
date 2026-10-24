@@ -28,10 +28,7 @@ from System.Collections.Generic import List
 from System.Windows import Visibility
 
 # ---------------------------------------------------------------------------
-# Imports hoistés : résolus une seule fois au chargement du module
-# (l'import dans chaque appel de get_element_name coûtait un dictionnaire
-#  d'import par élément traité).
-# ---------------------------------------------------------------------------
+
 try:
     from pyrevit.revit import query as _rv_query
     _rv_get_name = _rv_query.get_name
@@ -39,9 +36,7 @@ except Exception:
     _rv_get_name = None
 
 # ---------------------------------------------------------------------------
-# Pré-processeur de failures : supprime les avertissements Revit pour que
-# l'API n'ouvre jamais de dialogue modal (le point n°1 des "scripts lents").
-# ---------------------------------------------------------------------------
+
 try:
     from Autodesk.Revit.DB import (
         FailuresPreprocessor, FailureProcessingResult, FailureSeverity
