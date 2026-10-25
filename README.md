@@ -87,6 +87,7 @@ par l'API Revit : le resultat est rapide.
    quadrillage, la couleur et le debordement (champ ou boutons + / -).
 4. Verifiez l'apercu de l'emprise, puis validez avec **Entree** ou le bouton
    **Creer les quadrillages**.
+5. Cliquez sur un point de la zone de dessin de la vue qui sera l'origine du quadrillage.
 
 ### Exemple
 
