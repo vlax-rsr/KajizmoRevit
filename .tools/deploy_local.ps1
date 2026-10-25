@@ -1,0 +1,54 @@
+﻿# KajizmoRevit - Déploiement local vers pyRevit Extensions
+# Usage personnel uniquement - non suivi par git
+
+$ErrorActionPreference = "Stop"
+
+$repoRoot = Split-Path -Parent $PSScriptRoot
+$targetDir = "$env:APPDATA\pyRevit\Extensions\KajizmoRevit.extension"
+
+Write-Host "=== KajizmoRevit - Déploiement local ===" -ForegroundColor Cyan
+Write-Host "Source      : $repoRoot"
+Write-Host "Cible       : $targetDir"
+Write-Host ""
+
+if (-not (Test-Path "$repoRoot\Kajizmo Revit.tab")) {
+    Write-Host "ERREUR : Impossible de find 'Kajizmo Revit.tab'." -ForegroundColor Red
+    pause
+    exit 1
+}
+
+$extDir = Split-Path -Parent $targetDir
+if (-not (Test-Path $extDir)) {
+    New-Item -ItemType Directory -Path $extDir -Force | Out-Null
+}
+
+$oldLab = "$targetDir\Kajizmo Revit.tab\Laboratoire.panel"
+$backupLab = "$env:TEMP\KajizmoRevit_Lab_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
+if (Test-Path $oldLab) {
+    Write-Host "Sauvegarde du Laboratoire.panel..." -ForegroundColor Yellow
+    Copy-Item -Path $oldLab -Destination $backupLab -Recurse -Force
+}
+
+if (Test-Path $targetDir) {
+    Write-Host "Suppression de l'ancienne version..." -ForegroundColor Yellow
+    Remove-Item -Path $targetDir -Recurse -Force
+}
+
+Write-Host "Copie vers pyRevit Extensions..." -ForegroundColor Cyan
+robocopy $repoRoot $targetDir /E /XD ".git" ".tools" | Out-Null
+
+if (Test-Path $backupLab) {
+    $targetLab = "$targetDir\Kajizmo Revit.tab\Laboratoire.panel"
+    New-Item -ItemType Directory -Path $targetLab -Force | Out-Null
+    Copy-Item -Path "$backupLab\*" -Destination $targetLab -Recurse -Force -ErrorAction SilentlyContinue
+    Write-Host "Laboratoire.panel restauré" -ForegroundColor Green
+}
+
+if (-not (Test-Path "$targetDir\Kajizmo Revit.tab\Laboratoire.panel")) {
+    New-Item -ItemType Directory -Path "$targetDir\Kajizmo Revit.tab\Laboratoire.panel" -Force | Out-Null
+}
+
+Write-Host ""
+Write-Host "=== Déployement terminé ===" -ForegroundColor Green
+Write-Host "Reload pyRevit dans Revit pour voir l'extension." -ForegroundColor Cyan
+pause

@@ -1,9 +1,25 @@
-# Journal des modifications
+﻿# Journal des modifications
 
 Toutes les modifications notables de ce projet sont documentées dans ce fichier.
 
 Le format s'appuie sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/)
 et le projet respecte le [versionnage sémantique](https://semver.org/lang/fr/).
+
+## [1.0.0] - 2026-10-25
+
+### Ajoute
+
+- **RemakeQuadrillage** : nouvelle version du generateur de quadrillages (laboratoire) promue en production.
+- Panneau **Conception structurelle** (ex-Implantation) avec les plugins quadrillageauto et RemakeQuadrillage.
+- README globalise : nom du plugin **KAJIZMO REVIT**, tache realisee = automatisation, fonctionnalite principale = automatisation quadrillage.
+- Badges de telechargement conserves + badges thematiques (BIM, Automatisation, Revit, Structure, Architecture) et hashtags.
+
+### Modifie
+
+- Renommage du panneau Implantation.panel en Conception structurelle.panel.
+- Version du projet portee a 1.0.0.
+
+---
 
 ## [Non publié] — 0.2.3
 

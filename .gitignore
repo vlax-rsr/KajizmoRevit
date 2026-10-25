@@ -1,38 +1,18 @@
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-.pytest_cache/
+# Exclusions spécifiques - Laboratoire & Tests
+*Laboratoire*.panel/
+*lab*.panel/
+*.panel/dev/
+*.panel/test/
 
-# Éditeurs / OS
-.vscode/
-.idea/
+# Fichiers temporaires et caches Python
+*.pyc
+__pycache__/
+*.tmp
+*.log
 .DS_Store
 Thumbs.db
-desktop.ini
 
-# Divers
-*.log
-*.bak
-*.tmp
-*.rar
-*.zip
-
-# ───────────────────────────────────────────────────────────────
-# Fichiers gardés EN LOCAL uniquement (jamais poussés sur GitHub)
-# Pour re-publier un élément : supprimer sa ligne ci-dessous, puis
-#   git add <chemin>   (et commit / push)
-# ───────────────────────────────────────────────────────────────
-
-# Panneau Laboratoire (plugin « Murs depuis CAO » en développement)
-Kajizmo Revit.tab/Laboratoire.panel/
-
-# Spécifications internes / instructions IA, et tests du Laboratoire
-docs/
-tests/
-
-# Modules transverses utilisés uniquement par le Laboratoire
-lib/
-
-# Scripts de déploiement personnels (usage local)
-.tools/
+# Environnement et IDE
+.vscode/
+.idea/
+*.user
