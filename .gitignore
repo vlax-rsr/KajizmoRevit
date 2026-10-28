@@ -1,8 +1,18 @@
-# Exclusions spécifiques - Laboratoire & Tests
+# Ne pas suivre le fichier .gitignore lui-même
+.gitignore
+
+# Exclusions spécifiques - Ne garder que quadrillageauto.pushbutton
+Kajizmo Revit.tab/Architecture.panel/
+Kajizmo Revit.tab/Laboratoire.panel/
+Kajizmo Revit.tab/Conception structurelle.panel/PoteauxEntraxes.pushbutton/
+*docs/
 *Laboratoire*.panel/
 *lab*.panel/
 *.panel/dev/
 *.panel/test/
+*lib/
+*tests/
+
 
 # Fichiers temporaires et caches Python
 *.pyc

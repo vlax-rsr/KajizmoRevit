@@ -1,0 +1,38 @@
+{
+  "version": "1.1.0",
+  "title": "Réseau",
+  "subtitle": "de quadrillage",
+  "author": "Riana Stellia",
+  "log_name": "quadrillageauto.log",
+  "units": [
+    {"label": "Mètres (m)", "symbol": "m", "factor_to_feet": 3.28084},
+    {"label": "Millimètres (mm)", "symbol": "mm", "factor_to_feet": 0.00328084},
+    {"label": "Centimètres (cm)", "symbol": "cm", "factor_to_feet": 0.0328084}
+  ],
+  "default_unit_index": 0,
+  "default_offset": 1.0,
+  "offset_step": 0.5,
+  "default_color_index": 1,
+  "color_options": [
+    {"label": "Rouge (texte & lignes)", "rgb": [255, 0, 0]},
+    {"label": "Noir (inversion auto)", "rgb": [0, 0, 0]},
+    {"label": "Conserver l'actuelle", "rgb": null}
+  ],
+  "notation": {
+    "x_default_alpha": false,
+    "y_default_alpha": true
+  },
+  "placeholders": {
+    "dist_x": "3, 4, 5, 5",
+    "dist_y": "3, 4, 5, 5"
+  },
+  "ui": {
+    "window_width": 520,
+    "window_height": 680,
+    "badge_max_width": 260
+  },
+  "revit": {
+    "transaction_name": "Créer Quadrillage par Origine",
+    "level_extension_feet": 3.28084
+  }
+}

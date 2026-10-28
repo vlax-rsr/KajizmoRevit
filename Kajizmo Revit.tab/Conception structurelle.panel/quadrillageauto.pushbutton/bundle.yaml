@@ -2,6 +2,6 @@ title:
   en_us: "Réseau de\nquadrillage"
   fr_fr: "Réseau de\nquadrillage"
 tooltip:
-  en_us: "Generate Revit 2D/3D grids with existing model grid types across all levels"
-  fr_fr: "Génération autonome de quadrillages Revit 2D/3D visibles sur tous les niveaux"
-author: "R. Stellia"
+  en_us: "Generate 2D/3D grids"
+  fr_fr: "Génération de quadrillages 2D/3D"
+author: "Riana Stellia"

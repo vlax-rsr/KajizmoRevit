@@ -30,13 +30,11 @@ qui ajoute un onglet dedie dans le ruban d'Autodesk Revit.
 **Tache realisee : automatisation.**
 
 L'extension est **autonome** : elle ne depend d'aucun script externe pour fonctionner.
-Le laboratoire de developpement (modules experimentaux) est conserve en local et
-n'est pas publie dans le depot distant.
 
 ## Fonctionnalites
 
-- **Automatisation quadrillage** (unique option actuellement disponible) — voir la
-  section [Automatisation quadrillage](#automatisation-quadrillage).
+- **Automatisation quadrillage** - voir la section
+  [Automatisation quadrillage](#automatisation-quadrillage).
 - *(Autres fonctionnalites a venir.)*
 
 ## Automatisation quadrillage
@@ -72,7 +70,7 @@ par l'API Revit : le resultat est rapide.
 
 <div align="center">
 
-<img src="apercu.png" alt="Interface de l'extension Kajizmo Revit" width="860">
+<img src="Kajizmo Revit.tab/Conception structurelle.panel/quadrillageauto.pushbutton/apercu.png" alt="Interface de l'extension Kajizmo Revit" width="860">
 
 </div>
 
@@ -113,69 +111,27 @@ Dans cet exemple, l'emprise totale affichee est de **16.00 m x 18.00 m**
 
 ## Installation
 
-### Option 1 — Telechargement de l'archive (recommande)
-
 1. Telechargez et installez la derniere version de
    [pyRevit](https://github.com/pyrevitlabs/pyRevit/releases).
 2. Telechargez la derniere archive :
-   [**KajizmoRevit-1.0.0.rar**](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases/latest/download/KajizmoRevit-1.0.0.rar)
-   (ou consultez la page [Versions](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases/latest)).
-3. Decompressez l'archive (WinRAR, 7-Zip ou equivalent) : vous obtenez le dossier
+   [**KajizmoRevit-1.1.0.rar**](https://github.com/vlax-rsr/KajizmoRevit/releases/tag/v1.1.0)
+3. Decompressez l'archive : vous obtenez le dossier
    `KajizmoRevit.extension`.
 4. Copiez ce dossier dans le repertoire des extensions pyRevit :
    - `%APPDATA%\pyRevit\Extensions`
    - soit en clair : `C:\Users\<votre-nom>\AppData\Roaming\pyRevit\Extensions`
-5. Dans Revit, ouvrez l'onglet **pyRevit** → **Reload** (ou menu **pyRevit** →
-   **Reload**).
+   Il est conseillé de supprimer la précedente version de KajirmoRevit avant de coller la nouvelle version.
+5. Dans Revit, ouvrez l'onglet **pyRevit** → **Reload** / **Recharger**.
 
 > Le nom du dossier **doit** se terminer par `.extension`, sinon pyRevit ne le
 > reconnait pas.
-
-### Option 2 — Installation par Git
-
-```powershell
-cd "$env:APPDATA\pyRevit\Extensions"
-git clone https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto.git KajizmoRevit.extension
-```
-
-Pour mettre a jour une installation existante :
-
-```powershell
-cd "$env:APPDATA\pyRevit\Extensions\KajizmoRevit.extension"
-git pull
-```
 
 ### Rechargement
 
 Apres toute installation ou mise a jour, rechargez pyRevit :
 
-- Onglet **pyRevit** → **Reload**, ou
+- Onglet **pyRevit** → **Recharger**, ou
 - en terminal : `pyrevit reload`
-
-## Structure du depot
-
-```text
-KajizmoRevit.extension/
-├── .gitattributes
-├── .gitignore
-├── LICENSE
-├── CHANGELOG.md
-├── README.md
-├── apercu.png
-└── Kajizmo Revit.tab/
-    ├── Conception structurelle.panel/
-    │   ├── quadrillageauto.pushbutton/
-    │       ├── bundle.yaml
-    │       ├── icon.png
-    │       ├── icon.dark.png
-    │       ├── ui.xaml
-    │       └── script.py
-    │   └── RemakeQuadrillage.pushbutton/
-    ├── Architecture.panel/        (vide)
-    └── Laboratoire.panel/         (local uniquement, non publie)
-        ├── MursDepuisCAO.pushbutton/
-        └── Placeholder Panel.panel/
-```
 
 ## Contribution et assistance
 
