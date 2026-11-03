@@ -53,7 +53,7 @@ class QuadrillageWindow(forms.WPFWindow):
 
         try:
             if hasattr(self, 'lbl_footer_info') and self.lbl_footer_info is not None:
-                author = self.cfg.get('author', "Riana Stellia")
+                author = self.cfg.get('author', "R. Stellia")
                 self.lbl_footer_info.Text = "©2026 {}".format(author)
         except Exception:
             pass

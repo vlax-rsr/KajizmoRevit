@@ -13,7 +13,7 @@ DEFAULTS = {
     "version": "1.1.0",
     "title": "Réseau",
     "subtitle": "de quadrillage",
-    "author": "Riana Stellia",
+    "author": "R. Stellia",
     "log_name": "quadrillageauto.log",
     "units": [
         {"label": "Mètres (m)", "symbol": "m", "factor_to_feet": 3.28084},

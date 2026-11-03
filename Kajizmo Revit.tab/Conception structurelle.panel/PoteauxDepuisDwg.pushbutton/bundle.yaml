@@ -1,0 +1,7 @@
+title:
+  en_us: "Columns\nfrom DWG"
+  fr_fr: "Poteaux\ndepuis DWG"
+tooltip:
+  en_us: "Place columns from DWG with automatic type creation for each dimension."
+  fr_fr: "Implantation de poteaux depuis un DWG avec création automatique d'un type par dimension."
+author: "R. Stellia"

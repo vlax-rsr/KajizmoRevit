@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "title": "Poteaux",
+  "subtitle": "depuis DWG",
+  "author": "R. Stellia",
+  "log_name": "poteaux_dwg.log",
+  "options": {
+    "use_rotation": true,
+    "auto_orient": true,
+    "center_on_shape": true
+  },
+  "tolerances": {
+    "orientation_cm": 1.0,
+    "dimensions_cm": 1.5
+  },
+  "ui": {
+    "window_width": 480,
+    "window_height": 760
+  },
+  "revit": {
+    "transaction_name": "Implanter des poteaux depuis DWG"
+  },
+  "types": {
+    "param_b": "",
+    "param_h": "",
+    "arrondi_cm": 0.5,
+    "prefixe": "",
+    "plage_section_cm": [
+      10,
+      200
+    ]
+  }
+}

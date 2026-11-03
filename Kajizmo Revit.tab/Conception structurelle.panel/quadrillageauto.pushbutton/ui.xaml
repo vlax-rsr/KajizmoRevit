@@ -465,7 +465,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock x:Name="lbl_footer_info" Text="©2026 Riana Stellia" Style="{StaticResource FooterText}" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="lbl_footer_info" Text="©2026 R. Stellia" Style="{StaticResource FooterText}" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
