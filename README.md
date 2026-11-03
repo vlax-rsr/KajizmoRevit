@@ -4,11 +4,11 @@
 
 **Extension pyRevit pour Autodesk Revit — automatisation.**
 
-[![Version](https://img.shields.io/github/v/release/vlax-rsr/KajizmoRevit-QuadrillageAuto?label=version&color=c0392b)](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases/latest)
-[![Téléchargements](https://img.shields.io/github/downloads/vlax-rsr/KajizmoRevit-QuadrillageAuto/total?label=t%C3%A9l%C3%A9chargements)](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/releases)
+[![Version](https://img.shields.io/github/v/release/vlax-rsr/KajizmoRevit?label=version&color=c0392b)](https://github.com/vlax-rsr/KajizmoRevit/releases/latest)
+[![Téléchargements](https://img.shields.io/github/downloads/vlax-rsr/KajizmoRevit/total?label=t%C3%A9l%C3%A9chargements)](https://github.com/vlax-rsr/KajizmoRevit/releases)
 [![Revit](https://img.shields.io/badge/Revit-2019%2B-186BFF)](#prérequis)
 [![pyRevit](https://img.shields.io/badge/pyRevit-4.8%2B-2E7D32)](#prérequis)
-[![Licence](https://img.shields.io/github/license/vlax-rsr/KajizmoRevit-QuadrillageAuto?label=licence)](LICENSE)
+[![Licence](https://img.shields.io/github/license/vlax-rsr/KajizmoRevit?label=licence)](LICENSE)
 
 [![BIM](https://img.shields.io/badge/BIM-0078D4?style=flat)](#)
 [![Revit](https://img.shields.io/badge/Revit-186BFF?style=flat)](#)
@@ -178,7 +178,7 @@ Après toute installation ou mise à jour, rechargez pyRevit :
 ## Contribution et assistance
 
 - Pour signaler un bug ou proposer une amélioration, ouvrez une
-  [issue](https://github.com/vlax-rsr/KajizmoRevit-QuadrillageAuto/issues).
+  [issue](https://github.com/vlax-rsr/KajizmoRevit/issues).
 
 ## Tags
 
